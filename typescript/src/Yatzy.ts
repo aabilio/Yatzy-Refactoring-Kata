@@ -21,11 +21,9 @@ export default class Yatzy {
 
   static ones(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     const sumFn = (a: number, b: number) => a + b;
-    var sum = [d1, d2, d3, d4, d5]
+    return [d1, d2, d3, d4, d5]
       .filter(dice => dice === 1)
       .reduce(sumFn, 0);
-
-    return sum;
   }
 
   static twos(d1: number, d2: number, d3: number, d4: number, d5: number): number {

@@ -10,7 +10,8 @@ export default class Yatzy {
     return [d1, d2, d3, d4, d5].reduce(sumFn, 0);
   }
 
-  static yatzy(...args: number[]): number {
+  static yatzy(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    let args = [d1, d2, d3, d4, d5];
     var counts = [0, 0, 0, 0, 0, 0, 0, 0];
     for (var i = 0; i != args.length; ++i) {
       var die = args[i];

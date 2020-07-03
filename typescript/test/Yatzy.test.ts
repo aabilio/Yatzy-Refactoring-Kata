@@ -81,7 +81,7 @@ describe('Two pair', () => {
     assert.equal(16, Yatzy.two_pair(3, 3, 5, 5, 5));
   });
   it('scores 0 if there is no pair', () => {
-    assert.equal(0, Yatzy.score_pair(1, 3, 2, 6, 5));
+    assert.equal(0, Yatzy.two_pair(1, 3, 2, 6, 5));
   })
 });
 

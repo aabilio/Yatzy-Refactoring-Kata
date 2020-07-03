@@ -91,6 +91,9 @@ describe('Three of a kind', () => {
     assert.equal(15, Yatzy.three_of_a_kind(5, 3, 5, 4, 5));
     assert.equal(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 5));
   });
+  it('scores 0 if there is no three of a kind', () => {
+    assert.equal(0, Yatzy.three_of_a_kind(1, 3, 3, 6, 5));
+  })
 });
 
 describe('Four of a kind', () => {

@@ -9,8 +9,7 @@ export default class Yatzy {
   }
 
   static chance(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const sumFn = (a: number, b: number) => a + b;
-    return [d1, d2, d3, d4, d5].reduce(sumFn, 0);
+    return [d1, d2, d3, d4, d5].reduce(sum, 0);
   }
 
   static yatzy(d1: number, d2: number, d3: number, d4: number, d5: number): number {
@@ -20,10 +19,9 @@ export default class Yatzy {
   }
 
   static ones(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const sumFn = (a: number, b: number) => a + b;
     return [d1, d2, d3, d4, d5]
       .filter(dice => dice === 1)
-      .reduce(sumFn, 0);
+      .reduce(sum, 0);
   }
 
   static twos(d1: number, d2: number, d3: number, d4: number, d5: number): number {
@@ -179,4 +177,8 @@ export default class Yatzy {
     for (var at = 0; at < this.dice.length; at++) if (this.dice[at] == 6) sum = sum + 6;
     return sum;
   }
+}
+
+function sum(a: number, b: number): number {
+  return a + b;
 }

@@ -34,15 +34,15 @@ export default class Yatzy {
   }
 
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return highestDiceRepeated([d1, d2, d3, d4, d5]) * 2;
+    return highestDiceRepeatedTimes([d1, d2, d3, d4, d5], 2) * 2;
   }
 
   static two_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     const not = (dice: number) => (value: number): boolean => dice !== value;
     const dices = [d1, d2, d3, d4, d5];
-    const firstHighestDiceRepeated = highestDiceRepeated(dices);
-    const secondHighestDiceRepeated = highestDiceRepeated(
-      dices.filter(not(firstHighestDiceRepeated))
+    const firstHighestDiceRepeated = highestDiceRepeatedTimes(dices, 2);
+    const secondHighestDiceRepeated = highestDiceRepeatedTimes(
+      dices.filter(not(firstHighestDiceRepeated)), 2
     );
     return  firstHighestDiceRepeated * 2 + secondHighestDiceRepeated * 2;
   }
@@ -161,13 +161,13 @@ function sum(a: number, b: number): number {
   return a + b;
 }
 
-function highestDiceRepeated(dices: number[]): number {
+function highestDiceRepeatedTimes(dices: number[], times: number): number {
   const onlyRepeatedTimes = (times: number) => (dice: number, idx: number, arr: number[]) => itemsRepeatedAtLeast(arr, times).indexOf(dice) >= 0;
   const onlyUnique = (dice: number, idx: number, arr: number[]) => arr.indexOf(dice) === idx;
   const sortDescendent = (a: number, b: number): number => b - a;
   const getFirst = (_acc: number, _cur: number, _idx: number, arr: number[]) => arr[0];
   return dices
-    .filter(onlyRepeatedTimes(2))
+    .filter(onlyRepeatedTimes(times))
     .filter(onlyUnique)
     .sort(sortDescendent)
     .reduce(getFirst, 0);

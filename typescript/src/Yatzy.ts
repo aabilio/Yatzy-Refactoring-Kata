@@ -1,3 +1,6 @@
+const YATSY_SCORE: number = 50;
+const NONE_SCORE: number = 0;
+
 export default class Yatzy {
   private dice: number[];
 
@@ -13,7 +16,7 @@ export default class Yatzy {
   static yatzy(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     const diceIsEqualsToFirstOne = (dice: number, _: number, array: number[]) => dice === array[0];
     const allEquals = [d1, d2, d3, d4, d5].every(diceIsEqualsToFirstOne);
-    return allEquals ? 50 : 0;
+    return allEquals ? YATSY_SCORE : NONE_SCORE;
   }
 
   static ones(d1: number, d2: number, d3: number, d4: number, d5: number): number {

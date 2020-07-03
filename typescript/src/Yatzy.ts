@@ -21,15 +21,11 @@ export default class Yatzy {
   }
 
   static ones(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return [d1, d2, d3, d4, d5]
-      .filter(dice => dice === ONES_VALUE)
-      .reduce(sum, 0);
+    return sumEquals([d1, d2, d3, d4, d5], ONES_VALUE);
   }
 
   static twos(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return [d1, d2, d3, d4, d5]
-      .filter(dice => dice === TWOS_VALUE)
-      .reduce(sum, 0);
+    return sumEquals([d1, d2, d3, d4, d5], TWOS_VALUE);
   }
 
   static threes(d1: number, d2: number, d3: number, d4: number, d5: number): number {
@@ -175,6 +171,12 @@ export default class Yatzy {
     for (var at = 0; at < this.dice.length; at++) if (this.dice[at] == 6) sum = sum + 6;
     return sum;
   }
+}
+
+function sumEquals(dices: number[], value: number): number {
+  return dices
+      .filter(dice => dice === value)
+      .reduce(sum, 0);
 }
 
 function sum(a: number, b: number): number {

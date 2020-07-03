@@ -162,7 +162,6 @@ function sum(a: number, b: number): number {
 }
 
 function highestDiceRepeated(dices: number[]): number {
-  const removeItemByIndex = (arr: number[], idx: number) => arr.slice(0, idx).concat(arr.slice(idx + 1));
   const onlyRepeated = (dice: number, idx: number, arr: number[]) => itemsRepeatedAtLeast(arr, 2).indexOf(dice) >= 0;
   const onlyUnique = (dice: number, idx: number, arr: number[]) => arr.indexOf(dice) === idx;
   const sortDescendent = (a: number, b: number): number => b - a;

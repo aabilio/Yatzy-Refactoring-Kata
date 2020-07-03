@@ -162,12 +162,12 @@ function sum(a: number, b: number): number {
 }
 
 function highestDiceRepeated(dices: number[]): number {
-  const onlyRepeated = (dice: number, idx: number, arr: number[]) => itemsRepeatedAtLeast(arr, 2).indexOf(dice) >= 0;
+  const onlyRepeatedTimes = (times: number) => (dice: number, idx: number, arr: number[]) => itemsRepeatedAtLeast(arr, times).indexOf(dice) >= 0;
   const onlyUnique = (dice: number, idx: number, arr: number[]) => arr.indexOf(dice) === idx;
   const sortDescendent = (a: number, b: number): number => b - a;
   const getFirst = (_acc: number, _cur: number, _idx: number, arr: number[]) => arr[0];
   return dices
-    .filter(onlyRepeated)
+    .filter(onlyRepeatedTimes(2))
     .filter(onlyUnique)
     .sort(sortDescendent)
     .reduce(getFirst, 0);

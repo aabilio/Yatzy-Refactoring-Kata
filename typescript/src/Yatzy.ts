@@ -2,6 +2,7 @@ const YATSY_SCORE: number = 50;
 const NONE_SCORE: number = 0;
 const ONES_VALUE: number = 1;
 const TWOS_VALUE: number = 2;
+const THREES_VALUE: number = 3;
 
 export default class Yatzy {
   private dice: number[];
@@ -29,14 +30,7 @@ export default class Yatzy {
   }
 
   static threes(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    var s;
-    s = 0;
-    if (d1 == 3) s += 3;
-    if (d2 == 3) s += 3;
-    if (d3 == 3) s += 3;
-    if (d4 == 3) s += 3;
-    if (d5 == 3) s += 3;
-    return s;
+    return sumEquals([d1, d2, d3, d4, d5], THREES_VALUE);
   }
 
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {

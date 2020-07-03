@@ -1,5 +1,6 @@
 const YATSY_SCORE: number = 50;
 const NONE_SCORE: number = 0;
+const ONES_VALUE: number = 1;
 
 export default class Yatzy {
   private dice: number[];
@@ -20,7 +21,7 @@ export default class Yatzy {
 
   static ones(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     return [d1, d2, d3, d4, d5]
-      .filter(dice => dice === 1)
+      .filter(dice => dice === ONES_VALUE)
       .reduce(sum, 0);
   }
 

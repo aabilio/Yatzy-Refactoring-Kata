@@ -163,7 +163,7 @@ function sum(a: number, b: number): number {
 
 function highestDiceRepeated(dices: number[]): number {
   const removeItemByIndex = (arr: number[], idx: number) => arr.slice(0, idx).concat(arr.slice(idx + 1));
-  const onlyRepeated = (dice: number, idx: number, arr: number[]) => removeItemByIndex(arr, idx).indexOf(dice) >= 0;
+  const onlyRepeated = (dice: number, idx: number, arr: number[]) => itemsRepeatedAtLeast(arr, 2).indexOf(dice) >= 0;
   const onlyUnique = (dice: number, idx: number, arr: number[]) => arr.indexOf(dice) === idx;
   const sortDescendent = (a: number, b: number): number => b - a;
   const getFirst = (_acc: number, _cur: number, _idx: number, arr: number[]) => arr[0];
@@ -172,4 +172,18 @@ function highestDiceRepeated(dices: number[]): number {
     .filter(onlyUnique)
     .sort(sortDescendent)
     .reduce(getFirst, 0);
+}
+
+function itemsRepeatedAtLeast(arr: number[], times: number): number[] {
+  const repetitionns = itemRepetitions(arr);
+  return Object
+    .keys(repetitionns)
+    .map(key => parseInt(key))
+    .filter((key) => repetitionns[key] >= times);
+}
+
+function itemRepetitions(arr: number[]): { [key: number]: number; } {
+  return arr.reduce((acc: any, current: number) => ({
+    ...acc, [current]: (acc[current] + 1) || 1
+  }), {});
 }

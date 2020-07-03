@@ -7,8 +7,7 @@ export default class Yatzy {
 
   static chance(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     const sumFn = (a: number, b: number) => a + b;
-    return [d1, d2, d3, d4, d5]
-      .reduce(sumFn, 0);
+    return [d1, d2, d3, d4, d5].reduce(sumFn, 0);
   }
 
   static yatzy(...args: number[]): number {

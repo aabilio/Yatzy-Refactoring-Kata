@@ -11,8 +11,7 @@ export default class Yatzy {
   }
 
   static yatzy(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    let args = [d1, d2, d3, d4, d5];
-    const allEquals = args.every((dice, _idx, array) => dice === array[0]);
+    const allEquals = [d1, d2, d3, d4, d5].every((dice, _idx, array) => dice === array[0]);
     return allEquals ? 50 : 0;
   }
 

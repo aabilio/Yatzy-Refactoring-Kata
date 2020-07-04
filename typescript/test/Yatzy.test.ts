@@ -102,6 +102,9 @@ describe('Four of a kind', () => {
     assert.equal(20, Yatzy.four_of_a_kind(5, 5, 5, 4, 5));
     assert.equal(12, Yatzy.four_of_a_kind(3, 3, 3, 3, 3));
   });
+  it('scores 0 if there is no three of a kind', () => {
+    assert.equal(0, Yatzy.four_of_a_kind(1, 3, 3, 6, 5));
+  })
 });
 
 describe('Small straight', () => {

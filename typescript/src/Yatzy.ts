@@ -49,7 +49,6 @@ export default class Yatzy {
   }
 
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const multiplyBy = (factor: number) => (dice: number) => dice * factor;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5])
       .filter(first)
       .map(multiplyBy(2))
@@ -58,7 +57,6 @@ export default class Yatzy {
 
   static two_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     const firstAndSecond = (_dice: number, idx: number) => idx < 2;
-    const multiplyBy = (factor: number) => (dice: number) => dice * factor;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5])
       .filter(firstAndSecond)
       .map(multiplyBy(2))
@@ -66,7 +64,6 @@ export default class Yatzy {
   }
 
   static four_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const multiplyBy = (factor: number) => (dice: number) => dice * factor;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], 4)
       .filter(first)
       .map(multiplyBy(4))
@@ -74,7 +71,6 @@ export default class Yatzy {
   }
 
   static three_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const multiplyBy = (factor: number) => (dice: number) => dice * factor;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], 3)
       .filter(first)
       .map(multiplyBy(3))
@@ -177,3 +173,7 @@ function itemRepetitions(arr: number[]): { [key: number]: number; } {
 function first(_: any, idx: number) {
   return idx < 1;
 }
+
+function multiplyBy(factor: number) {
+  return (num: number) => num * factor
+};

@@ -36,6 +36,18 @@ export default class Yatzy {
     return sumEquals([d1, d2, d3, d4, d5], THREES_VALUE);
   }
 
+  static fours(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    return sumEquals([d1, d2, d3, d4, d5], FOURS_VALUE);
+  }
+
+  static fives(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    return sumEquals([d1, d2, d3, d4, d5], FIVES_VALUE);
+  }
+
+  static sixes(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    return sumEquals([d1, d2, d3, d4, d5], SIXES_VALUE);
+  }
+
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     const first = (_dice: number, idx: number) => idx < 1;
     const double = (dice: number) => dice * 2;
@@ -128,18 +140,15 @@ export default class Yatzy {
   }
 
   fours(): number {
-    return sumEquals([this.dice[0], this.dice[1], this.dice[2], this.dice[3], this.dice[4]],
-      FOURS_VALUE);
+    return Yatzy.fours(...this.dice);
   }
 
   fives(): number {
-    return sumEquals([this.dice[0], this.dice[1], this.dice[2], this.dice[3], this.dice[4]],
-      FIVES_VALUE);
+    return Yatzy.fives(...this.dice);
   }
 
   sixes(): number {
-    return sumEquals([this.dice[0], this.dice[1], this.dice[2], this.dice[3], this.dice[4]],
-      SIXES_VALUE);
+    return Yatzy.sixes(...this.dice);
   }
 }
 

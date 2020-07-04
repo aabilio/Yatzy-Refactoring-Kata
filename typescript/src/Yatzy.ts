@@ -34,9 +34,12 @@ export default class Yatzy {
   }
 
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const getFirst = (_acc: number, _cur: number, _idx: number, arr: number[]) => arr[0];
+    const first = (_dice: number, idx: number) => idx < 1;
     const double = (dice: number) => dice * 2;
-    return double(itemsRepeatedAtLeast([d1, d2, d3, d4, d5]).reduce(getFirst, 0));
+    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5])
+      .filter(first)
+      .map(double)
+      .reduce(sum, 0);
   }
 
   static two_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {

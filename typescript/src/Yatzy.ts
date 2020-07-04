@@ -82,9 +82,8 @@ export default class Yatzy {
   }
 
   static smallStraight(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const smallStraight = [1, 2, 3, 4, 5];
     const dices = [d1, d2, d3, d4, d5].slice().sort();
-    return (arrayEquals(smallStraight, dices)) ? smallStraight.reduce(sum) : 0;
+    return (isSmallStraight(dices)) ? dices.reduce(sum) : 0;
   }
 
   static largeStraight(d1: number, d2: number, d3: number, d4: number, d5: number): number {
@@ -141,6 +140,11 @@ export default class Yatzy {
   sixes(): number {
     return Yatzy.sixes(...this.dice);
   }
+}
+
+function isSmallStraight(dices: number[]): boolean {
+  const SMALL_STRAIGHT = [1, 2, 3, 4, 5];
+  return arrayEquals(SMALL_STRAIGHT, dices);
 }
 
 function sumEquals(arr: number[], value: number): number {

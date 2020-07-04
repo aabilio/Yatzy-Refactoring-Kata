@@ -152,8 +152,7 @@ export default class Yatzy {
   }
 
   fullHouse(): number {
-    return isFullHouse(this.dices)
-      ? this.score_pair() + this.three_of_a_kind() : NONE_SCORE;
+    return isFullHouse(this.dices) ? this.score_pair() + this.three_of_a_kind() : NONE_SCORE;
   }
 }
 

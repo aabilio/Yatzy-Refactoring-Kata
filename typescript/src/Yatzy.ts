@@ -206,8 +206,8 @@ function itemsRepeatitions(
   const repetitions = itemRepetitions(arr);
   return Object
     .keys(repetitions)
-    .map((key) => parseInt(key))
-    .filter((key) => strict
+    .map(key => parseInt(key))
+    .filter(key => strict
       ? repetitions[key] === times
       : repetitions[key] >= times
     )

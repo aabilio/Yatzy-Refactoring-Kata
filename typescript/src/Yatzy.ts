@@ -95,7 +95,7 @@ export default class Yatzy {
     const dices = [d1, d2, d3, d4, d5];
     const pairs = itemsRepeated(dices, 2);
     const threeOfAKind = itemsRepeated(dices, 3);
-    return pairs.length && threeOfAKind.length > 0
+    return isFullHouse(dices)
       ? pairs.reduce(sum) * 2 + threeOfAKind.reduce(sum) * 3 : NONE_SCORE;
   }
 
@@ -120,6 +120,12 @@ function isSmallStraight(dices: number[]): boolean {
 function isLargeStraight(dices: number[]): boolean {
   const LARGE_STRAIGHT = [2, 3, 4, 5, 6];
   return arrayEquals(LARGE_STRAIGHT, dices);
+}
+
+function isFullHouse(dices: number[]): boolean {
+  const areTherePairs = itemsRepeated(dices, 2).length > 0;
+  const areThereRhreeOfAKind = itemsRepeated(dices, 3).length > 0;
+  return areTherePairs && areThereRhreeOfAKind;
 }
 
 function sumEquals(arr: number[], value: number): number {

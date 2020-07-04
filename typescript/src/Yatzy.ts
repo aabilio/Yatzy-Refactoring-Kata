@@ -159,18 +159,6 @@ function sum(a: number, b: number): number {
   return a + b;
 }
 
-function highestDiceRepeatedTimes(dices: number[], times: number): number {
-  const onlyRepeatedTimes = (times: number) => (dice: number, idx: number, arr: number[]) => itemsRepeatedAtLeast(arr, times).indexOf(dice) >= 0;
-  const onlyUnique = (dice: number, idx: number, arr: number[]) => arr.indexOf(dice) === idx;
-  const sortDescendent = (a: number, b: number): number => b - a;
-  const getFirst = (_acc: number, _cur: number, _idx: number, arr: number[]) => arr[0];
-  return dices
-    .filter(onlyRepeatedTimes(times))
-    .filter(onlyUnique)
-    .sort(sortDescendent)
-    .reduce(getFirst, 0);
-}
-
 function itemsRepeatedAtLeast(arr: number[], times: number = 2): number[] {
   const repetitions = itemRepetitions(arr);
   return Object

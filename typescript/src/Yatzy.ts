@@ -143,33 +143,33 @@ export default class Yatzy {
 
   smallStraight(): number {
     const sortedDices = this.dices.slice().sort();
-    return (isSmallStraight(sortedDices)) ? sortedDices.reduce(sum) : NONE_SCORE;
+    return (this.isSmallStraight(sortedDices)) ? sortedDices.reduce(sum) : NONE_SCORE;
   }
 
   largeStraight(): number {
     const sortedDices = this.dices.slice().sort();
-    return (isLargeStraight(sortedDices)) ? sortedDices.reduce(sum) : NONE_SCORE;
+    return (this.isLargeStraight(sortedDices)) ? sortedDices.reduce(sum) : NONE_SCORE;
   }
 
   fullHouse(): number {
-    return isFullHouse(this.dices) ? this.score_pair() + this.three_of_a_kind() : NONE_SCORE;
+    return this.isFullHouse(this.dices) ? this.score_pair() + this.three_of_a_kind() : NONE_SCORE;
   }
-}
 
-function isSmallStraight(dices: number[]): boolean {
-  const SMALL_STRAIGHT = [1, 2, 3, 4, 5];
-  return arrayEquals(SMALL_STRAIGHT, dices);
-}
+  private isSmallStraight(dices: number[]): boolean {
+    const SMALL_STRAIGHT = [1, 2, 3, 4, 5];
+    return arrayEquals(SMALL_STRAIGHT, dices);
+  }
 
-function isLargeStraight(dices: number[]): boolean {
-  const LARGE_STRAIGHT = [2, 3, 4, 5, 6];
-  return arrayEquals(LARGE_STRAIGHT, dices);
-}
+  private isLargeStraight(dices: number[]): boolean {
+    const LARGE_STRAIGHT = [2, 3, 4, 5, 6];
+    return arrayEquals(LARGE_STRAIGHT, dices);
+  }
 
-function isFullHouse(dices: number[]): boolean {
-  const areTherePairs = itemsRepeated(dices, 2).length > 0;
-  const areThereRhreeOfAKind = itemsRepeated(dices, 3).length > 0;
-  return areTherePairs && areThereRhreeOfAKind;
+  private isFullHouse(dices: number[]): boolean {
+    const areTherePairs = itemsRepeated(dices, 2).length > 0;
+    const areThereRhreeOfAKind = itemsRepeated(dices, 3).length > 0;
+    return areTherePairs && areThereRhreeOfAKind;
+  }
 }
 
 function sumEquals(arr: number[], value: number): number {

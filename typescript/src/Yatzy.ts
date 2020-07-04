@@ -80,7 +80,7 @@ export default class Yatzy {
   }
 
   chance(): number {
-    return this.dices.reduce(sum, 0);
+    return this.dices.reduce(sum);
   }
 
   yatzy(): number {

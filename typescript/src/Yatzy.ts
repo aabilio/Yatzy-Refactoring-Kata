@@ -56,7 +56,6 @@ export default class Yatzy {
   }
 
   static two_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const firstAndSecond = (_dice: number, idx: number) => idx < 2;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5])
       .filter(firstItems(2))
       .map(multiplyBy(2))

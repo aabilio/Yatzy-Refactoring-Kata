@@ -20,81 +20,85 @@ export default class Yatzy {
   }
 
   static chance(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return [d1, d2, d3, d4, d5].reduce(sum, 0);
+    return new Yatzy(d1, d2, d3, d4, d5).chance();
   }
 
   static yatzy(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const diceIsEqualsToFirstOne = (dice: number, _: number, array: number[]) => dice === array[0];
-    const allEquals = [d1, d2, d3, d4, d5].every(diceIsEqualsToFirstOne);
-    return allEquals ? YATSY_SCORE : NONE_SCORE;
+    return new Yatzy(d1, d2, d3, d4, d5).yatzy();
   }
 
   static ones(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return sumEquals([d1, d2, d3, d4, d5], ONES_VALUE);
+    return new Yatzy(d1, d2, d3, d4, d5).ones();
   }
 
   static twos(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return sumEquals([d1, d2, d3, d4, d5], TWOS_VALUE);
+    return new Yatzy(d1, d2, d3, d4, d5).twos();
   }
 
   static threes(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return sumEquals([d1, d2, d3, d4, d5], THREES_VALUE);
+    return new Yatzy(d1, d2, d3, d4, d5).threes();
   }
 
   static fours(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return new Yatzy(d1, d2, d3, d4, d5).fives();
+    return new Yatzy(d1, d2, d3, d4, d5).fours();
   }
 
   static fives(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return new Yatzy(d1, d2, d3, d4, d5).sixes();
+    return new Yatzy(d1, d2, d3, d4, d5).fives();
   }
 
   static sixes(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return sumEquals([d1, d2, d3, d4, d5], SIXES_VALUE);
+    return new Yatzy(d1, d2, d3, d4, d5).sixes();
   }
 
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], TWICE)
-      .filter(firstItems(1))
-      .map(multiplyBy(2))
-      .reduce(sum, 0);
+    return new Yatzy(d1, d2, d3, d4, d5).score_pair();
   }
 
   static two_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], TWICE)
-      .filter(firstItems(2))
-      .map(multiplyBy(2))
-      .reduce(sum, 0);
+    return new Yatzy(d1, d2, d3, d4, d5).two_pair();
   }
 
   static three_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], THREE_TIMES)
-      .filter(firstItems(1))
-      .map(multiplyBy(3))
-      .reduce(sum, 0);
+    return new Yatzy(d1, d2, d3, d4, d5).three_of_a_kind();
   }
 
   static four_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], FOUR_TIMES)
-      .filter(firstItems(1))
-      .map(multiplyBy(4))
-      .reduce(sum, 0);
+    return new Yatzy(d1, d2, d3, d4, d5).four_of_a_kind();
   }
 
   static smallStraight(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const dices = [d1, d2, d3, d4, d5].slice().sort();
-    return (isSmallStraight(dices)) ? dices.reduce(sum) : NONE_SCORE;
+    return new Yatzy(d1, d2, d3, d4, d5).smallStraight();
   }
 
   static largeStraight(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const dices = [d1, d2, d3, d4, d5].slice().sort();
-    return (isLargeStraight(dices)) ? dices.reduce(sum) : NONE_SCORE;
+    return new Yatzy(d1, d2, d3, d4, d5).largeStraight();
   }
 
   static fullHouse(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const dices = [d1, d2, d3, d4, d5];
-    return isFullHouse(dices)
-      ? Yatzy.score_pair(...dices) + Yatzy.three_of_a_kind(...dices) : NONE_SCORE;
+    return new Yatzy(d1, d2, d3, d4, d5).fullHouse();
+  }
+
+  chance(): number {
+    return this.dices.reduce(sum, 0);
+  }
+
+  yatzy(): number {
+    const diceIsEqualsToFirstOne = (dice: number, _: number, array: number[]) => dice === array[0];
+    const allEquals = this.dices.every(diceIsEqualsToFirstOne);
+    return allEquals ? YATSY_SCORE : NONE_SCORE;
+  }
+
+  ones(): number {
+    return sumEquals(this.dices, ONES_VALUE);
+  }
+
+  twos(): number {
+    return sumEquals(this.dices, TWOS_VALUE);
+  }
+
+  threes(): number {
+    return sumEquals(this.dices, THREES_VALUE);
   }
 
   fours(): number {
@@ -107,6 +111,50 @@ export default class Yatzy {
 
   sixes(): number {
     return sumEquals(this.dices, SIXES_VALUE);
+  }
+
+  score_pair(): number {
+    return itemsRepeatedAtLeast(this.dices, TWICE)
+      .filter(firstItems(1))
+      .map(multiplyBy(2))
+      .reduce(sum, 0);
+  }
+
+  two_pair(): number {
+    return itemsRepeatedAtLeast(this.dices, TWICE)
+      .filter(firstItems(2))
+      .map(multiplyBy(2))
+      .reduce(sum, 0);
+  }
+
+  three_of_a_kind(): number {
+    return itemsRepeatedAtLeast(this.dices, THREE_TIMES)
+      .filter(firstItems(1))
+      .map(multiplyBy(3))
+      .reduce(sum, 0);
+  }
+
+  four_of_a_kind(): number {
+    return itemsRepeatedAtLeast(this.dices, FOUR_TIMES)
+      .filter(firstItems(1))
+      .map(multiplyBy(4))
+      .reduce(sum, 0);
+  }
+
+  smallStraight(): number {
+    const dices = this.dices.slice().sort();
+    return (isSmallStraight(dices)) ? dices.reduce(sum) : NONE_SCORE;
+  }
+
+  largeStraight(): number {
+    const dices = this.dices.slice().sort();
+    return (isLargeStraight(dices)) ? dices.reduce(sum) : NONE_SCORE;
+  }
+
+  fullHouse(): number {
+    const dices = this.dices;
+    return isFullHouse(dices)
+      ? Yatzy.score_pair(...dices) + Yatzy.three_of_a_kind(...dices) : NONE_SCORE;
   }
 }
 

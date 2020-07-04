@@ -34,17 +34,18 @@ export default class Yatzy {
   }
 
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return highestDiceRepeatedTimes([d1, d2, d3, d4, d5], 2) * 2;
+    const getFirst = (_acc: number, _cur: number, _idx: number, arr: number[]) => arr[0];
+    const double = (dice: number) => dice * 2;
+    return double(itemsRepeatedAtLeast([d1, d2, d3, d4, d5]).reduce(getFirst, 0));
   }
 
   static two_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const not = (dice: number) => (value: number): boolean => dice !== value;
-    const dices = [d1, d2, d3, d4, d5];
-    const firstHighestDiceRepeated = highestDiceRepeatedTimes(dices, 2);
-    const secondHighestDiceRepeated = highestDiceRepeatedTimes(
-      dices.filter(not(firstHighestDiceRepeated)), 2
-    );
-    return  firstHighestDiceRepeated * 2 + secondHighestDiceRepeated * 2;
+    const firstAndSecond = (_dice: number, idx: number) => idx < 2;
+    const double = (dice: number) => dice * 2;
+    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5])
+      .filter(firstAndSecond)
+      .map(double)
+      .reduce(sum, 0);
   }
 
   static four_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
@@ -173,12 +174,13 @@ function highestDiceRepeatedTimes(dices: number[], times: number): number {
     .reduce(getFirst, 0);
 }
 
-function itemsRepeatedAtLeast(arr: number[], times: number): number[] {
-  const repetitionns = itemRepetitions(arr);
+function itemsRepeatedAtLeast(arr: number[], times: number = 2): number[] {
+  const repetitions = itemRepetitions(arr);
   return Object
-    .keys(repetitionns)
-    .map(key => parseInt(key))
-    .filter((key) => repetitionns[key] >= times);
+    .keys(repetitions)
+    .map((key) => parseInt(key))
+    .filter((key) => repetitions[key] >= times)
+    .sort((a, b): number => b - a);
 }
 
 function itemRepetitions(arr: number[]): { [key: number]: number; } {

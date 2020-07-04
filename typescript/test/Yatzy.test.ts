@@ -128,4 +128,10 @@ describe('Full house', () => {
     assert.equal(18, Yatzy.fullHouse(6, 2, 2, 2, 6));
     assert.equal(0, Yatzy.fullHouse(2, 3, 4, 5, 6));
   });
+  it('scores 0 if only a pair is present', () => {
+    assert.equal(0, Yatzy.fullHouse(6, 2, 2, 1, 4));
+  });
+  it('scores 0 if only a three of a kind is present', () => {
+    assert.equal(0, Yatzy.fullHouse(6, 2, 2, 2, 4));
+  });
 });

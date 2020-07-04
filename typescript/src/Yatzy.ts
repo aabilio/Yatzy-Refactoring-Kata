@@ -140,11 +140,11 @@ export default class Yatzy {
   }
 
   smallStraight(): number {
-    return (this.isSmallStraight(this.dices)) ? this.dices.reduce(sum) : NONE_SCORE;
+    return this.isSmallStraight(this.dices) ? this.dices.reduce(sum) : NONE_SCORE;
   }
 
   largeStraight(): number {
-    return (this.isLargeStraight(this.dices)) ? this.dices.reduce(sum) : NONE_SCORE;
+    return this.isLargeStraight(this.dices) ? this.dices.reduce(sum) : NONE_SCORE;
   }
 
   fullHouse(): number {

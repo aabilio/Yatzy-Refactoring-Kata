@@ -3,6 +3,9 @@ const NONE_SCORE: number = 0;
 const ONES_VALUE: number = 1;
 const TWOS_VALUE: number = 2;
 const THREES_VALUE: number = 3;
+const FOURS_VALUE: number = 4;
+const FIVES_VALUE: number = 5;
+const SIXES_VALUE: number = 6;
 
 export default class Yatzy {
   private dice: number[];
@@ -125,27 +128,18 @@ export default class Yatzy {
   }
 
   fours(): number {
-    var sum;
-    sum = 0;
-    for (let at = 0; at != 5; at++) {
-      if (this.dice[at] == 4) {
-        sum += 4;
-      }
-    }
-    return sum;
+    return sumEquals([this.dice[0], this.dice[1], this.dice[2], this.dice[3], this.dice[4]],
+      FOURS_VALUE);
   }
 
   fives(): number {
-    let s = 0;
-    var i;
-    for (i = 0; i < this.dice.length; i++) if (this.dice[i] == 5) s = s + 5;
-    return s;
+    return sumEquals([this.dice[0], this.dice[1], this.dice[2], this.dice[3], this.dice[4]],
+      FIVES_VALUE);
   }
 
   sixes(): number {
-    let sum = 0;
-    for (var at = 0; at < this.dice.length; at++) if (this.dice[at] == 6) sum = sum + 6;
-    return sum;
+    return sumEquals([this.dice[0], this.dice[1], this.dice[2], this.dice[3], this.dice[4]],
+      SIXES_VALUE);
   }
 }
 

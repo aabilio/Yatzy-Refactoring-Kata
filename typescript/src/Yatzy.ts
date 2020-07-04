@@ -12,6 +12,9 @@ const FOURS_VALUE: number = 4;
 const FIVES_VALUE: number = 5;
 const SIXES_VALUE: number = 6;
 
+const SMALL_STRAIGHT = [1, 2, 3, 4, 5];
+const LARGE_STRAIGHT = [2, 3, 4, 5, 6];
+
 export default class Yatzy {
   private dices: number[];
 
@@ -156,12 +159,10 @@ export default class Yatzy {
   }
 
   private isSmallStraight(dices: number[]): boolean {
-    const SMALL_STRAIGHT = [1, 2, 3, 4, 5];
     return arrayEquals(SMALL_STRAIGHT, dices.slice().sort());
   }
 
   private isLargeStraight(dices: number[]): boolean {
-    const LARGE_STRAIGHT = [2, 3, 4, 5, 6];
     return arrayEquals(LARGE_STRAIGHT, dices.slice().sort());
   }
 

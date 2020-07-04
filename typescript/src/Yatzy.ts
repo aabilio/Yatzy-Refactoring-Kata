@@ -192,14 +192,14 @@ function isEqualsToFirstOne(current: number, _: number, array: number[]): boolea
 };
 
 function itemsRepeatedAtLeast(arr: number[], times: number = 2): number[] {
-  return itemsRepeatitions({arr, times, strict: false});
+  return getRepeatedItems({arr, times, strict: false});
 }
 
 function itemsRepeated(arr: number[], times: number = 2): number[] {
-  return itemsRepeatitions({arr, times, strict: true});
+  return getRepeatedItems({arr, times, strict: true});
 }
 
-function itemsRepeatitions(
+function getRepeatedItems(
   {arr, times = 2, strict = false}:
   {arr: number[], times: number, strict: boolean}
 ): number[] {

@@ -207,13 +207,10 @@ function itemsRepeatitions(
   return Object
     .keys(repetitions)
     .map((key) => parseInt(key))
-    .filter((key) => repetitions[key] >= times)
-    .filter((key) => {
-      if (!strict) {
-        return true;
-      }
-      return repetitions[key] === times;
-    })
+    .filter((key) => strict
+      ? repetitions[key] === times
+      : repetitions[key] >= times
+    )
     .sort((a, b): number => b - a);
 }
 

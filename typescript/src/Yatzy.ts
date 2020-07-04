@@ -49,7 +49,6 @@ export default class Yatzy {
   }
 
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const first = (_dice: number, idx: number) => idx < 1;
     const double = (dice: number) => dice * 2;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5])
       .filter(first)
@@ -67,7 +66,6 @@ export default class Yatzy {
   }
 
   static four_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const first = (_dice: number, idx: number) => idx < 1;
     const byFour = (dice: number) => dice * 4;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], 4)
       .filter(first)
@@ -76,7 +74,6 @@ export default class Yatzy {
   }
 
   static three_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const first = (_dice: number, idx: number) => idx < 1;
     const byThree = (dice: number) => dice * 3;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], 3)
       .filter(first)
@@ -175,4 +172,8 @@ function itemRepetitions(arr: number[]): { [key: number]: number; } {
   return arr.reduce((acc: any, current: number) => ({
     ...acc, [current]: (acc[current] + 1) || 1
   }), {});
+}
+
+function first(_: any, idx: number) {
+  return idx < 1;
 }

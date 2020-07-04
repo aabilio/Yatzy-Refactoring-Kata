@@ -152,8 +152,7 @@ export default class Yatzy {
   }
 
   fullHouse(): number {
-    const dices = this.dices;
-    return isFullHouse(dices)
+    return isFullHouse(this.dices)
       ? this.score_pair() + this.three_of_a_kind() : NONE_SCORE;
   }
 }

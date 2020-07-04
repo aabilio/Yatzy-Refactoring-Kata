@@ -144,9 +144,9 @@ export default class Yatzy {
   }
 }
 
-function sumEquals(dices: number[], value: number): number {
-  return dices
-      .filter(dice => dice === value)
+function sumEquals(arr: number[], value: number): number {
+  return arr
+      .filter(item => item === value)
       .reduce(sum, 0);
 }
 

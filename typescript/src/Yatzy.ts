@@ -42,11 +42,11 @@ export default class Yatzy {
   }
 
   static fours(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return sumEquals([d1, d2, d3, d4, d5], FOURS_VALUE);
+    return new Yatzy(d1, d2, d3, d4, d5).fives();
   }
 
   static fives(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return sumEquals([d1, d2, d3, d4, d5], FIVES_VALUE);
+    return new Yatzy(d1, d2, d3, d4, d5).sixes();
   }
 
   static sixes(d1: number, d2: number, d3: number, d4: number, d5: number): number {
@@ -98,15 +98,15 @@ export default class Yatzy {
   }
 
   fours(): number {
-    return Yatzy.fours(...this.dices);
+    return sumEquals(this.dices, FOURS_VALUE);
   }
 
   fives(): number {
-    return Yatzy.fives(...this.dices);
+    return sumEquals(this.dices, FIVES_VALUE);
   }
 
   sixes(): number {
-    return Yatzy.sixes(...this.dices);
+    return sumEquals(this.dices, SIXES_VALUE);
   }
 }
 

@@ -154,9 +154,7 @@ export default class Yatzy {
   }
 
   private isYatzy(dices: number[]): boolean {
-    const diceIsEqualsToFirstOne = (dice: number, _: number, array: number[]) => dice === array[0];
-    const allEquals = this.dices.every(diceIsEqualsToFirstOne);
-    return allEquals;
+    return allEquals(dices);
   }
 
   private isSmallStraight(dices: number[]): boolean {
@@ -174,6 +172,11 @@ export default class Yatzy {
     const areThereRhreeOfAKind = itemsRepeated(dices, 3).length > 0;
     return areTherePairs && areThereRhreeOfAKind;
   }
+}
+
+function allEquals(arr: number[]): boolean {
+  const isEqualsToFirstOne = (current: number, _: number, array: number[]) => current === array[0];
+  return arr.every(isEqualsToFirstOne);
 }
 
 function sumEquals(arr: number[], value: number): number {

@@ -192,20 +192,28 @@ function isEqualsToFirstOne(current: number, _: number, array: number[]): boolea
 };
 
 function itemsRepeatedAtLeast(arr: number[], times: number = 2): number[] {
+  return itemsRepeatitions({arr, times, strict: false});
+}
+
+function itemsRepeated(arr: number[], times: number = 2): number[] {
+  return itemsRepeatitions({arr, times, strict: true});
+}
+
+function itemsRepeatitions(
+  {arr, times = 2, strict = false}:
+  {arr: number[], times: number, strict: boolean}
+): number[] {
   const repetitions = itemRepetitions(arr);
   return Object
     .keys(repetitions)
     .map((key) => parseInt(key))
     .filter((key) => repetitions[key] >= times)
-    .sort((a, b): number => b - a);
-}
-
-function itemsRepeated(arr: number[], times: number = 2): number[] {
-  const repetitions = itemRepetitions(arr);
-  return Object
-    .keys(repetitions)
-    .map((key) => parseInt(key))
-    .filter((key) => repetitions[key] === times)
+    .filter((key) => {
+      if (!strict) {
+        return true;
+      }
+      return repetitions[key] === times;
+    })
     .sort((a, b): number => b - a);
 }
 

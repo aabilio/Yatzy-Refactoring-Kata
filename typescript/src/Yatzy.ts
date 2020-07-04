@@ -84,9 +84,7 @@ export default class Yatzy {
   }
 
   yatzy(): number {
-    const diceIsEqualsToFirstOne = (dice: number, _: number, array: number[]) => dice === array[0];
-    const allEquals = this.dices.every(diceIsEqualsToFirstOne);
-    return allEquals ? YATSY_SCORE : NONE_SCORE;
+    return this.isYatzy(this.dices) ? YATSY_SCORE : NONE_SCORE;
   }
 
   ones(): number {
@@ -153,6 +151,12 @@ export default class Yatzy {
 
   fullHouse(): number {
     return this.isFullHouse(this.dices) ? this.score_pair() + this.three_of_a_kind() : NONE_SCORE;
+  }
+
+  private isYatzy(dices: number[]): boolean {
+    const diceIsEqualsToFirstOne = (dice: number, _: number, array: number[]) => dice === array[0];
+    const allEquals = this.dices.every(diceIsEqualsToFirstOne);
+    return allEquals;
   }
 
   private isSmallStraight(dices: number[]): boolean {

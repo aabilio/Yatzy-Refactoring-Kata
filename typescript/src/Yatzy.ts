@@ -177,6 +177,10 @@ function allEquals(arr: number[]): boolean {
   return arr.every(isEqualsToFirstOne);
 }
 
+function isEqualsToFirstOne(current: number, _: number, array: number[]): boolean {
+  return current === array[0];
+};
+
 function sumEquals(arr: number[], value: number): number {
   return arr
       .filter(item => item === value)
@@ -186,10 +190,6 @@ function sumEquals(arr: number[], value: number): number {
 function sum(a: number, b: number): number {
   return a + b;
 }
-
-function isEqualsToFirstOne(current: number, _: number, array: number[]): boolean {
-  return current === array[0];
-};
 
 function itemsRepeatedAtLeast(arr: number[], times: number = 2): number[] {
   return getRepeatedItems({arr, times, strict: false});

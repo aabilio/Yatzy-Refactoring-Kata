@@ -1,9 +1,9 @@
 const YATSY_SCORE: number = 50;
 const NONE_SCORE: number = 0;
 
-const TWICE = 2;
-const THREE_TIMES = 3;
-const FOUR_TIMES = 4;
+const TWICE: number = 2;
+const THREE_TIMES: number = 3;
+const FOUR_TIMES: number = 4;
 
 const ONES_VALUE: number = 1;
 const TWOS_VALUE: number = 2;
@@ -12,8 +12,8 @@ const FOURS_VALUE: number = 4;
 const FIVES_VALUE: number = 5;
 const SIXES_VALUE: number = 6;
 
-const SMALL_STRAIGHT = [1, 2, 3, 4, 5];
-const LARGE_STRAIGHT = [2, 3, 4, 5, 6];
+const SMALL_STRAIGHT: number[] = [1, 2, 3, 4, 5];
+const LARGE_STRAIGHT: number[] = [2, 3, 4, 5, 6];
 
 export default class Yatzy {
   private dices: number[];
@@ -214,17 +214,17 @@ function itemsRepeatitions(
     .sort((a, b): number => b - a);
 }
 
-function itemRepetitions(arr: number[]): { [key: number]: number; } {
+function itemRepetitions(arr: number[]): { [key: number]: number } {
   return arr.reduce((acc: any, current: number) => ({
     ...acc, [current]: (acc[current] + 1) || 1
   }), {});
 }
 
-function firstItems(amount: number) {
+function firstItems(amount: number): (_: any, idx: number) => boolean {
   return (_: any, idx: number) => idx < amount;
 }
 
-function multiplyBy(factor: number) {
+function multiplyBy(factor: number): (num: number) => number {
   return (num: number) => num * factor
 };
 

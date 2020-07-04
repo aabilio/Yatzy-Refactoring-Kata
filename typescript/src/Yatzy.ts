@@ -142,13 +142,13 @@ export default class Yatzy {
   }
 
   smallStraight(): number {
-    const dices = this.dices.slice().sort();
-    return (isSmallStraight(dices)) ? dices.reduce(sum) : NONE_SCORE;
+    const sortedDices = this.dices.slice().sort();
+    return (isSmallStraight(sortedDices)) ? sortedDices.reduce(sum) : NONE_SCORE;
   }
 
   largeStraight(): number {
-    const dices = this.dices.slice().sort();
-    return (isLargeStraight(dices)) ? dices.reduce(sum) : NONE_SCORE;
+    const sortedDices = this.dices.slice().sort();
+    return (isLargeStraight(sortedDices)) ? sortedDices.reduce(sum) : NONE_SCORE;
   }
 
   fullHouse(): number {

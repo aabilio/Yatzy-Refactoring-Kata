@@ -1,5 +1,10 @@
 const YATSY_SCORE: number = 50;
 const NONE_SCORE: number = 0;
+
+const TWICE = 2;
+const THREE_TIMES = 3;
+const FOUR_TIMES = 4;
+
 const ONES_VALUE: number = 1;
 const TWOS_VALUE: number = 2;
 const THREES_VALUE: number = 3;
@@ -49,28 +54,28 @@ export default class Yatzy {
   }
 
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5])
+    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], TWICE)
       .filter(firstItems(1))
       .map(multiplyBy(2))
       .reduce(sum, 0);
   }
 
   static two_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5])
+    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], TWICE)
       .filter(firstItems(2))
       .map(multiplyBy(2))
       .reduce(sum, 0);
   }
 
   static three_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], 3)
+    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], THREE_TIMES)
       .filter(firstItems(1))
       .map(multiplyBy(3))
       .reduce(sum, 0);
   }
 
   static four_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], 4)
+    return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], FOUR_TIMES)
       .filter(firstItems(1))
       .map(multiplyBy(4))
       .reduce(sum, 0);

@@ -49,35 +49,35 @@ export default class Yatzy {
   }
 
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const double = (dice: number) => dice * 2;
+    const multiplyBy = (factor: number) => (dice: number) => dice * factor;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5])
       .filter(first)
-      .map(double)
+      .map(multiplyBy(2))
       .reduce(sum, 0);
   }
 
   static two_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     const firstAndSecond = (_dice: number, idx: number) => idx < 2;
-    const double = (dice: number) => dice * 2;
+    const multiplyBy = (factor: number) => (dice: number) => dice * factor;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5])
       .filter(firstAndSecond)
-      .map(double)
+      .map(multiplyBy(2))
       .reduce(sum, 0);
   }
 
   static four_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const byFour = (dice: number) => dice * 4;
+    const multiplyBy = (factor: number) => (dice: number) => dice * factor;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], 4)
       .filter(first)
-      .map(byFour)
+      .map(multiplyBy(4))
       .reduce(sum, 0);
   }
 
   static three_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    const byThree = (dice: number) => dice * 3;
+    const multiplyBy = (factor: number) => (dice: number) => dice * factor;
     return itemsRepeatedAtLeast([d1, d2, d3, d4, d5], 3)
       .filter(first)
-      .map(byThree)
+      .map(multiplyBy(3))
       .reduce(sum, 0);
   }
 

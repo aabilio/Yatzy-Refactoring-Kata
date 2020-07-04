@@ -168,8 +168,8 @@ export default class Yatzy {
 
   private isFullHouse(dices: number[]): boolean {
     const areTherePairs = itemsRepeated(dices, 2).length > 0;
-    const areThereRhreeOfAKind = itemsRepeated(dices, 3).length > 0;
-    return areTherePairs && areThereRhreeOfAKind;
+    const areThereThreeOfAKind = itemsRepeated(dices, 3).length > 0;
+    return areTherePairs && areThereThreeOfAKind;
   }
 }
 

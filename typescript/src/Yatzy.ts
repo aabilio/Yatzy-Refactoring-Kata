@@ -173,7 +173,6 @@ export default class Yatzy {
 }
 
 function allEquals(arr: number[]): boolean {
-  const isEqualsToFirstOne = (current: number, _: number, array: number[]) => current === array[0];
   return arr.every(isEqualsToFirstOne);
 }
 
@@ -186,6 +185,10 @@ function sumEquals(arr: number[], value: number): number {
 function sum(a: number, b: number): number {
   return a + b;
 }
+
+function isEqualsToFirstOne(current: number, _: number, array: number[]): boolean {
+  return current === array[0]
+};
 
 function itemsRepeatedAtLeast(arr: number[], times: number = 2): number[] {
   const repetitions = itemRepetitions(arr);

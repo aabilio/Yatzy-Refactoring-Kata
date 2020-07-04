@@ -13,10 +13,10 @@ const FIVES_VALUE: number = 5;
 const SIXES_VALUE: number = 6;
 
 export default class Yatzy {
-  private dice: number[];
+  private dices: number[];
 
   constructor(d1: number, d2: number, d3: number, d4: number, d5: number) {
-    this.dice = [d1, d2, d3, d4, d5];
+    this.dices = [d1, d2, d3, d4, d5];
   }
 
   static chance(d1: number, d2: number, d3: number, d4: number, d5: number): number {
@@ -98,15 +98,15 @@ export default class Yatzy {
   }
 
   fours(): number {
-    return Yatzy.fours(...this.dice);
+    return Yatzy.fours(...this.dices);
   }
 
   fives(): number {
-    return Yatzy.fives(...this.dice);
+    return Yatzy.fives(...this.dices);
   }
 
   sixes(): number {
-    return Yatzy.sixes(...this.dice);
+    return Yatzy.sixes(...this.dices);
   }
 }
 

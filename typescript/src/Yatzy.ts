@@ -188,7 +188,7 @@ function sum(a: number, b: number): number {
 }
 
 function isEqualsToFirstOne(current: number, _: number, array: number[]): boolean {
-  return current === array[0]
+  return current === array[0];
 };
 
 function itemsRepeatedAtLeast(arr: number[], times: number = 2): number[] {

@@ -82,15 +82,9 @@ export default class Yatzy {
   }
 
   static smallStraight(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    var tallies;
-    tallies = [0, 0, 0, 0, 0, 0, 0];
-    tallies[d1 - 1] += 1;
-    tallies[d2 - 1] += 1;
-    tallies[d3 - 1] += 1;
-    tallies[d4 - 1] += 1;
-    tallies[d5 - 1] += 1;
-    if (tallies[0] == 1 && tallies[1] == 1 && tallies[2] == 1 && tallies[3] == 1 && tallies[4] == 1) return 15;
-    return 0;
+    const smallStraight = [1, 2, 3, 4, 5];
+    const dices = [d1, d2, d3, d4, d5].slice().sort();
+    return (arrayEquals(smallStraight, dices)) ? smallStraight.reduce(sum) : 0;
   }
 
   static largeStraight(d1: number, d2: number, d3: number, d4: number, d5: number): number {
@@ -181,3 +175,7 @@ function firstItems(amount: number) {
 function multiplyBy(factor: number) {
   return (num: number) => num * factor
 };
+
+function arrayEquals(a: number[], b: number[]): boolean {
+  return JSON.stringify(a) === JSON.stringify(b);
+}

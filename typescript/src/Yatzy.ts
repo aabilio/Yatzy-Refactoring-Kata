@@ -93,10 +93,8 @@ export default class Yatzy {
 
   static fullHouse(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     const dices = [d1, d2, d3, d4, d5];
-    const pairs = itemsRepeated(dices, 2);
-    const threeOfAKind = itemsRepeated(dices, 3);
     return isFullHouse(dices)
-      ? pairs.reduce(sum) * 2 + threeOfAKind.reduce(sum) * 3 : NONE_SCORE;
+      ? Yatzy.score_pair(...dices) + Yatzy.three_of_a_kind(...dices) : NONE_SCORE;
   }
 
   fours(): number {
